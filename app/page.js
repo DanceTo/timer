@@ -13,6 +13,12 @@ export default function Home() {
     milliseconds: "00",
   });
 
+  const [showImage, setShowImage] = useState(false);
+  useEffect(() => {
+    const timer = setTimeout(() => setShowImage(true), 2000); // через 2 секунди
+    return () => clearTimeout(timer);
+  }, []);
+
   useEffect(() => {
     const interval = setInterval(() => {
       const now = new Date().getTime();
@@ -64,7 +70,7 @@ export default function Home() {
       </video>
 
       {/* Темна маска */}
-      <div className="absolute top-0 left-0 w-full h-full bg-black/70 z-10" />
+      {/* <div className="absolute top-0 left-0 w-full h-full bg-black/70 z-10" /> */}
 
       {/* Контент */}
       <div className="relative z-20 flex flex-col items-center justify-center h-full text-white px-4 text-center">
@@ -87,6 +93,23 @@ export default function Home() {
           <span>{timeLeft.milliseconds}</span>
         </div>
       </div>
+
+      <div
+        className={`p-[40px] absolute top-0 left-0 w-full h-full z-5 transition-opacity duration-2000 ease-in-out ${
+          showImage ? "opacity-100" : "opacity-0"
+        } pointer-events-none`}
+        style={{
+          backgroundImage: 'url("/img.webp")', // заміни шлях
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          maskImage:
+            "radial-gradient(circle at center, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 90%)",
+          WebkitMaskImage:
+            "radial-gradient(circle at center, rgba(0,0,0,1) 30%, rgba(0,0,0,0) 90%)",
+          // filter: "blur(20px)",
+          opacity: 0.8, // можеш погратись з цим
+        }}
+      ></div>
     </main>
   );
 }
