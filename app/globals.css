@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@keyframes titleDrop {
+  0% {
+    opacity: 0;
+    transform: translateY(-50px) scale(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes pulseGreen {
+  0%,
+  100% {
+    color: #009900;
+    text-shadow: 0 0 10px #00990055;
+  }
+  50% {
+    color: #00ff00;
+    text-shadow: 0 0 20px #00ff0088;
+  }
+}
+
+.animate-titleDrop {
+  animation: titleDrop 1.2s ease-out forwards;
+}
+
+.pulse-text {
+  animation: pulseGreen 2.5s infinite;
+}
